@@ -1,0 +1,68 @@
+<section class="items-page">
+  <header class="items-header">
+    <input
+      type="text"
+      class="search-input"
+      [placeholder]="'items.searchPlaceholder' | translate"
+      [value]="searchQuery()"
+      (input)="onSearchChange($any($event.target).value)"
+    />
+
+    <select
+      class="page-size-select"
+      [value]="pageSize()"
+      (change)="onPageSizeChange($any($event.target).value)"
+    >
+      <option value="5">5 / page</option>
+      <option value="10">10 / page</option>
+      <option value="20">20 / page</option>
+    </select>
+  </header>
+
+  @if (loading()) {
+    <div class="state state-loading">
+      {{ 'items.loading' | translate }}
+    </div>
+  } @else if (error()) {
+    <div class="state state-error">
+      {{ error() }}
+    </div>
+  } @else {
+    @if ((items() || []).length === 0) {
+      <div class="state state-empty">
+        <div class="empty-icon">📦</div>
+        <h2>{{ 'items.noItems' | translate }}</h2>
+        <p>{{ 'items.noItemsDescription' | translate }}</p>
+      </div>
+    } @else {
+      <div class="items-grid">
+        @for (item of items() || []; track item.id) {
+          <app-item-card [item]="item"></app-item-card>
+        }
+      </div>
+    }
+
+    <footer class="pagination">
+      <button
+        class="page-btn"
+        type="button"
+        (click)="prevPage()"
+        [disabled]="page() <= 1"
+      >
+        {{ 'items.previous' | translate }}
+      </button>
+
+      <span class="page-label">
+        {{ 'items.page' | translate }} {{ page() }}
+      </span>
+
+      <button
+        class="page-btn"
+        type="button"
+        (click)="nextPage()"
+      >
+        {{ 'items.next' | translate }}
+      </button>
+    </footer>
+  }
+</section>

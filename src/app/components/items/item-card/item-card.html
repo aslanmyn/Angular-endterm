@@ -1,0 +1,36 @@
+<article class="card">
+  <a class="img-wrap" [routerLink]="['/items', item.id]">
+    <img [src]="item.thumbnail" [alt]="item.title" loading="lazy" />
+    @if (item.category) {
+      <span class="category-badge">{{ item.category }}</span>
+    }
+  </a>
+
+  <div class="body">
+    <div class="header-row">
+      <h3>
+        <a class="title-link" [routerLink]="['/items', item.id]">{{ item.title }}</a>
+      </h3>
+      <button 
+        type="button" 
+        class="favorite-btn"
+        (click)="toggleFavorite()"
+        [class.active]="isFavorite()"
+        [attr.aria-label]="isFavorite() ? 'Remove from favorites' : 'Add to favorites'"
+      >
+        {{ isFavorite() ? '❤️' : '🤍' }}
+      </button>
+    </div>
+
+    <p class="muted">{{ item.description | slice:0:100 }}…</p>
+
+    <div class="meta">
+      <span class="price">{{ item.price | number:'1.0-0' }}</span>
+      <span class="rating">{{ item.rating | number:'1.1-1' }}</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn" [routerLink]="['/items', item.id]">View Details</a>
+    </div>
+  </div>
+</article>

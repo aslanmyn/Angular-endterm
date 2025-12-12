@@ -1,0 +1,85 @@
+<section class="home">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✨ {{ 'home.badge' | translate }}</div>
+      <h1 class="hero-title">
+        {{ 'home.title' | translate }}
+        <span class="gradient-text">{{ 'home.titleHighlight' | translate }}</span>
+      </h1>
+      <p class="hero-description">
+        {{ 'home.description' | translate }}
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/items" class="btn btn-primary">
+          {{ 'home.exploreItems' | translate }}
+        </a>
+        <a routerLink="/about" class="btn btn-secondary">
+          {{ 'home.learnMore' | translate }}
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">{{ 'home.products' | translate }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">{{ 'home.available' | translate }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">{{ 'home.free' | translate }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-wrapper">
+        <div class="floating-card card-1">🛍️</div>
+        <div class="floating-card card-2">⭐</div>
+        <div class="floating-card card-3">❤️</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="features-header">
+      <h2 class="section-title">{{ 'home.featuresTitle' | translate }}</h2>
+      <p class="section-subtitle">{{ 'home.featuresSubtitle' | translate }}</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3 class="feature-title">{{ 'home.featureSearch' | translate }}</h3>
+        <p class="feature-description">
+          {{ 'home.featureSearchDesc' | translate }}
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3 class="feature-title">{{ 'home.featureFavorites' | translate }}</h3>
+        <p class="feature-description">
+          {{ 'home.featureFavoritesDesc' | translate }}
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">{{ 'home.featureFast' | translate }}</h3>
+        <p class="feature-description">
+          {{ 'home.featureFastDesc' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">{{ 'home.ctaTitle' | translate }}</h2>
+      <p class="cta-description">
+        {{ 'home.ctaDescription' | translate }}
+      </p>
+      <a routerLink="/items" class="btn btn-cta">
+        {{ 'home.browseAll' | translate }}
+      </a>
+    </div>
+  </div>
+</section>

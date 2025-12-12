@@ -1,0 +1,78 @@
+@let item = item$ | async;
+@let loading = loading$ | async;
+@let error = error$ | async;
+
+@if (loading) {
+  <section class="state">Loading…</section>
+} @else if (error) {
+  <section class="state error">{{ error }}</section>
+} @else if (item) {
+  <article class="details">
+
+    <div class="header-actions">
+      <a class="back" routerLink="/items">← Back</a>
+      <button 
+        type="button" 
+        class="favorite-btn"
+        (click)="toggleFavorite(item.id)"
+        [class.active]="isFavorite(item.id)"
+        [attr.aria-label]="isFavorite(item.id) ? 'Remove from favorites' : 'Add to favorites'"
+      >
+        {{ isFavorite(item.id) ? '❤️' : '🤍' }}
+        <span class="favorite-text">{{ isFavorite(item.id) ? 'Saved' : 'Save' }}</span>
+      </button>
+    </div>
+
+    <h1 class="title">{{ item.title }}</h1>
+
+    <div class="layout">
+      <div class="media">
+        <img [src]="item.thumbnail" [alt]="item.title" />
+      </div>
+
+      <ul class="specs">
+        <li>
+          <span class="k">ID</span>
+          <span class="v">#{{ item.id }}</span>
+        </li>
+        <li>
+          <span class="k">Category</span>
+          <span class="v">{{ item.category }}</span>
+        </li>
+        <li>
+          <span class="k">Brand</span>
+          <span class="v">{{ item.brand || '—' }}</span>
+        </li>
+        <li>
+          <span class="k">Price</span>
+          <span class="v">₸ {{ item.price }}</span>
+        </li>
+        <li>
+          <span class="k">Rating</span>
+          <span class="v">★ {{ item.rating }}</span>
+        </li>
+        <li>
+          <span class="k">Stock</span>
+          <span class="v">{{ item.stock }}</span>
+        </li>
+        <li class="desc">
+          <span class="k">Description</span>
+          <p class="v">
+            {{ item.description }}
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    @if (item.images?.length) {
+      <section class="gallery">
+        <h3>Gallery</h3>
+        <div class="images">
+          @for (src of item.images; track src) {
+            <img [src]="src" [alt]="item.title" loading="lazy" />
+          }
+        </div>
+      </section>
+    }
+  </article>
+}

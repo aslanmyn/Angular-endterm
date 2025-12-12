@@ -1,0 +1,61 @@
+<section class="auth">
+  <div class="auth__card">
+    <h1 class="auth__title">{{ 'auth.loginTitle' | translate }}</h1>
+    <p class="auth__subtitle">{{ 'auth.loginSubtitle' | translate }}</p>
+
+    @if (error()) {
+      <div class="auth__error">
+        {{ error() }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth__form">
+      <div class="auth__field">
+        <label for="email">{{ 'common.email' | translate }}</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+        />
+        @if (emailCtrl?.touched && emailCtrl?.invalid) {
+          <div class="field-error">
+            @if (emailCtrl?.errors?.['required']) {
+              <span>{{ 'auth.emailRequired' | translate }}</span>
+            } @else if (emailCtrl?.errors?.['email']) {
+              <span>{{ 'auth.emailInvalid' | translate }}</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="auth__field">
+        <label for="password">{{ 'common.password' | translate }}</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+        @if (passwordCtrl?.touched && passwordCtrl?.invalid) {
+          <div class="field-error">
+            @if (passwordCtrl?.errors?.['required']) {
+              <span>{{ 'auth.passwordRequired' | translate }}</span>
+            }
+          </div>
+        }
+      </div>
+
+      <button type="submit" [disabled]="loading() || form.invalid" class="auth__button">
+        @if (loading()) { {{ 'common.loading' | translate }} } @else { {{ 'common.login' | translate }} }
+      </button>
+    </form>
+
+    <p class="auth__hint">
+      Don't have an account?
+      <a routerLink="/signup">{{ 'common.signup' | translate }}</a>
+    </p>
+  </div>
+</section>

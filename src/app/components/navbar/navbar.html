@@ -1,0 +1,32 @@
+<nav class="nav">
+  <div class="brand"><a routerLink="/">ItemsCatalog</a></div>
+  <ul>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'common.home' | translate }}</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">{{ 'common.about' | translate }}</a></li>
+    <li><a routerLink="/items" routerLinkActive="active">{{ 'common.items' | translate }}</a></li>
+    <li><a routerLink="/favorites" routerLinkActive="active">{{ 'common.favorites' | translate }}</a></li>
+
+    @if (user$ | async; as user) {
+      <li>
+        <a routerLink="/profile" routerLinkActive="active" class="profile-link">
+          @if (profilePictureUrl()) {
+            <img [src]="profilePictureUrl()!" [alt]="user.email || 'Profile'" class="nav-avatar" />
+          } @else {
+            <span class="nav-avatar-initial">{{ user.email?.charAt(0) | uppercase }}</span>
+          }
+          <span>{{ 'common.profile' | translate }}</span>
+        </a>
+      </li>
+      <li>
+        <button type="button" class="nav-link-button" (click)="logout()">{{ 'common.logout' | translate }}</button>
+      </li>
+    } @else {
+
+      <li><a routerLink="/login" routerLinkActive="active">{{ 'common.login' | translate }}</a></li>
+      <li><a routerLink="/signup" routerLinkActive="active">{{ 'common.signup' | translate }}</a></li>
+    }
+    <li>
+      <app-language-switcher></app-language-switcher>
+    </li>
+  </ul>
+</nav>

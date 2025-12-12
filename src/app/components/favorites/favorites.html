@@ -1,0 +1,36 @@
+<section class="favorites-page">
+  <header class="favorites-header">
+    <h1>{{ 'favorites.title' | translate }}</h1>
+    <p>{{ 'favorites.subtitle' | translate }}</p>
+  </header>
+
+  @if (favoritesService.syncMessage()) {
+    <div class="sync-message">
+      {{ favoritesService.syncMessage() }}
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="state state-loading">
+      {{ 'common.loading' | translate }}
+    </div>
+  } @else if (error()) {
+    <div class="state state-error">
+      {{ error() }}
+    </div>
+  } @else if (items().length === 0) {
+    <div class="state state-empty">
+      <div class="empty-icon">❤️</div>
+      <h2>{{ 'favorites.empty' | translate }}</h2>
+      <p>{{ 'favorites.emptyDescription' | translate }}</p>
+      <a routerLink="/items" class="browse-btn">{{ 'favorites.browseItems' | translate }}</a>
+    </div>
+  } @else {
+    <div class="favorites-grid">
+      @for (item of items(); track item.id) {
+        <app-item-card [item]="item"></app-item-card>
+      }
+    </div>
+  }
+</section>
+

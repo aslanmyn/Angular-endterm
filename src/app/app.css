@@ -1,0 +1,55 @@
+:root {
+  --primary: #2b7cff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg-soft: #f8fafc;
+}
+
+* { box-sizing: border-box; }
+
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 1.25rem auto;
+  padding: 0 1rem;
+}
+
+.offline-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.offline-banner svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .offline-banner {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}

@@ -1,0 +1,54 @@
+<section class="about">
+  <div class="about-hero">
+    <div class="about-hero-content">
+      <h1 class="about-title">{{ 'about.title' | translate }}</h1>
+      <p class="about-subtitle">
+        {{ 'about.subtitle' | translate }}
+      </p>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <div class="about-section">
+      <div class="about-text">
+        <h2 class="section-heading">{{ 'about.mission' | translate }}</h2>
+        <p>{{ 'about.missionText1' | translate }}</p>
+        <p>{{ 'about.missionText2' | translate }}</p>
+      </div>
+      <div class="about-visual">
+        <div class="visual-card">
+          <div class="visual-icon">🎯</div>
+          <h3>{{ 'about.userFocused' | translate }}</h3>
+          <p>{{ 'about.userFocusedDesc' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section reverse">
+      <div class="about-visual">
+        <div class="visual-card">
+          <div class="visual-icon">⚡</div>
+          <h3>{{ 'about.highPerformance' | translate }}</h3>
+          <p>{{ 'about.highPerformanceDesc' | translate }}</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2 class="section-heading">{{ 'about.keyFeatures' | translate }}</h2>
+        <ul class="features-list">
+          <li>{{ 'about.feature1' | translate }}</li>
+          <li>{{ 'about.feature2' | translate }}</li>
+          <li>{{ 'about.feature3' | translate }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>{{ 'about.ready' | translate }}</h2>
+      <p>{{ 'about.readyDesc' | translate }}</p>
+      <div class="cta-buttons">
+        <a routerLink="/items" class="btn btn-primary">{{ 'about.browseItems' | translate }}</a>
+        <a routerLink="/" class="btn btn-secondary">{{ 'about.backHome' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</section>

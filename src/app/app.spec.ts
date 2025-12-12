@@ -1,10 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { Messaging } from '@angular/fire/messaging';
 
 describe('App', () => {
   beforeEach(async () => {
+    const mockMessaging = jasmine.createSpyObj('Messaging', [], {});
+
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [
+        { provide: Messaging, useValue: mockMessaging }
+      ]
     }).compileComponents();
   });
 
@@ -14,10 +20,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-endterm');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, items-catalog');
   });
 });

@@ -1,0 +1,96 @@
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">{{ 'auth.signupTitle' | translate }}</h1>
+    <p class="auth-subtitle">
+      {{ 'auth.signupSubtitle' | translate }}
+    </p>
+
+    @if (error()) {
+      <div class="alert alert-error">
+        {{ error() }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="field">
+        <label for="email">{{ 'common.email' | translate }}</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+        />
+
+        @if (emailCtrl?.touched && emailCtrl?.invalid) {
+          <div class="field-error">
+            @if (emailCtrl?.errors?.['required']) {
+              <span>{{ 'auth.emailRequired' | translate }}</span>
+            } @else if (emailCtrl?.errors?.['email']) {
+              <span>{{ 'auth.emailInvalid' | translate }}</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">{{ 'common.password' | translate }}</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="At least 8 chars, number and symbol"
+          autocomplete="new-password"
+        />
+
+        @if (passwordCtrl?.touched && passwordCtrl?.invalid) {
+          <div class="field-error">
+            @if (passwordCtrl?.errors?.['required']) {
+              <span>{{ 'auth.passwordRequired' | translate }}</span>
+            } @else if (passwordCtrl?.errors?.['weakPassword']) {
+              <span>{{ 'auth.passwordWeak' | translate }}</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">{{ 'common.confirmPassword' | translate }}</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Repeat your password"
+          autocomplete="new-password"
+        />
+
+        @if (confirmCtrl?.touched && (confirmCtrl?.invalid || form.errors?.['passwordsMismatch'])) {
+          <div class="field-error">
+            @if (confirmCtrl?.errors?.['required']) {
+              <span>{{ 'auth.confirmPasswordRequired' | translate }}</span>
+            } @else if (form.errors?.['passwordsMismatch']) {
+              <span>{{ 'auth.passwordsMismatch' | translate }}</span>
+            }
+          </div>
+        }
+      </div>
+
+      <button
+        class="auth-button"
+        type="submit"
+        [disabled]="loading() || form.invalid"
+      >
+        @if (loading()) {
+          <span>{{ 'common.loading' | translate }}</span>
+        } @else {
+          <span>{{ 'common.signup' | translate }}</span>
+        }
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Already have an account?
+      <a routerLink="/login">{{ 'common.login' | translate }}</a>
+    </p>
+  </div>
+</section>
